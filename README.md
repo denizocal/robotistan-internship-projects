@@ -18,7 +18,7 @@ During my time as a Maker and Content Creator Intern, I gained hands-on experien
 - **📁 [Eye Tracking Mouse](eye-tracking-mouse/README.md):** Raspberry Pi 5 gaze-controlled mouse using OpenCV eye tracking and blink clicking.
 - **📁 ESP32 Wireless Macro Keyboard:** Built a custom 3-button Bluetooth macro pad using Outemu Brown mechanical switches and the BleKeyboard library.
 - **📁 Ultrasonic Radar System:** Created a 180-degree radar tracking system using an Arduino Uno, HC-SR04 sensor, SG90 servo, and Processing for the visual interface.
-- **📁 Ambilight Monitor Backlighting:** Engineered a dynamic RGB LED backlighting system for monitors using an Arduino Nano, WS2812B strips, and the FastLED library.
+- **📁 [Ambilight Monitor Backlighting](ambilight-monitor-backlighting/README.md):** Built a screen-synchronized RGB backlighting system with an Arduino Nano, WS2812B LEDs, and FastLED.
 - **📁 [Smart Cleaning Robot](smart-cleaning-robot/README.md):** Arduino-based mobile cleaning robot with fan-assisted debris collection and ultrasonic obstacle detection.
 
 ## 💻 Technologies & Tools
