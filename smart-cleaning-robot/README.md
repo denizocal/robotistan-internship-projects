@@ -36,7 +36,80 @@ The drive system uses differential steering: the relative speeds and directions 
 
 ## Software
 
-The Arduino program is responsible for setting motor speeds, controlling movement and turns, keeping the cleaning motor active, and optionally processing ultrasonic sensor readings. The source document describes the intended control behavior; an Arduino source file was not included with the project materials.
+The Arduino sketch controls the robot's drive motors and reads distance measurements from the HC-SR04 ultrasonic sensor. When the path is clear, the robot moves forward. When an obstacle is closer than 20 cm, it stops briefly, reverses, and turns right before continuing.
+
+### Arduino Code
+
+```arduino
+#define trigPin 6
+#define echoPin 7
+#define IN1 8
+#define IN2 9
+#define IN3 10
+#define IN4 11
+long duration;
+int distance;
+void setup() {
+pinMode(trigPin, OUTPUT);
+pinMode(echoPin, INPUT);
+pinMode(IN1, OUTPUT);
+pinMode(IN2, OUTPUT);
+pinMode(IN3, OUTPUT);
+
+pinMode(IN4, OUTPUT);
+Serial.begin(9600);
+}
+void loop() {
+distance = mesafeOlc();
+if (distance > 20) {
+ileri();
+} else {
+dur();
+delay(300);
+geri();
+delay(500);
+sagaDon();
+delay(400);
+}
+}
+int mesafeOlc() {
+digitalWrite(trigPin, LOW);
+delayMicroseconds(2);
+digitalWrite(trigPin, HIGH);
+delayMicroseconds(10);
+digitalWrite(trigPin, LOW);
+duration = pulseIn(echoPin, HIGH);
+distance = duration * 0.034 / 2;
+return distance;
+}
+void ileri() {
+digitalWrite(IN1, HIGH);
+digitalWrite(IN2, LOW);
+digitalWrite(IN3, HIGH);
+digitalWrite(IN4, LOW);
+}
+void geri() {
+
+digitalWrite(IN1, LOW);
+digitalWrite(IN2, HIGH);
+digitalWrite(IN3, LOW);
+digitalWrite(IN4, HIGH);
+}
+void sagaDon() {
+digitalWrite(IN1, HIGH);
+digitalWrite(IN2, LOW);
+digitalWrite(IN3, LOW);
+digitalWrite(IN4, HIGH);
+}
+void dur() {
+digitalWrite(IN1, LOW);
+digitalWrite(IN2, LOW);
+digitalWrite(IN3, LOW);
+digitalWrite(IN4, LOW);
+}
+```
+
+The pin assignments above are for the motor driver and sensor wiring shown in this example. Check the connections and motor driver type in the physical build before uploading the sketch.
 
 ## Possible Improvements
 
