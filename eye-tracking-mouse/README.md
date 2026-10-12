@@ -1,27 +1,38 @@
 # Eye Tracking Mouse
 
-A Raspberry Pi 5 project that lets a user move the mouse pointer with their gaze and click by blinking. It uses a camera, OpenCV face and eye detection, pupil estimation, NumPy coordinate mapping, and PyAutoGUI pointer control.
+Control the on-screen pointer with your gaze and click by blinking. This Raspberry Pi 5 project combines camera input, OpenCV-based eye tracking, and PyAutoGUI mouse control.
 
-![Raspberry Pi and camera setup](images/eye-tracking-setup.jpg)
+## Project at a Glance
 
-## Overview
+The camera captures a 640 × 480 preview. OpenCV detects a face and eye region, then estimates the pupil position from the image. NumPy maps that position to screen coordinates, and a rolling average smooths pointer movement. A blink triggers a mouse click.
 
-The camera captures a 640 × 480 preview. The program detects a face, selects an eye region, and estimates the pupil position from dark image contours. It maps the pupil coordinates to the screen dimensions and averages recent positions to smooth pointer movement. A blink is interpreted as a click.
+<p align="center">
+  <img src="images/eye-tracking-setup.jpg" width="420" alt="Raspberry Pi and camera setup for the eye tracking mouse" />
+</p>
+<p align="center"><em>Raspberry Pi and camera hardware used in the project.</em></p>
 
-![Eye tracking mouse in use](images/eye-tracking-demo.png)
+<p align="center">
+  <img src="images/eye-tracking-demo.png" width="640" alt="Eye tracking preview with face and eye detection displayed on screen" />
+</p>
+<p align="center"><em>Live eye tracking and cursor control in use.</em></p>
+
+## How It Works
+
+1. Picamera2 captures frames from the Raspberry Pi camera.
+2. Haar cascade classifiers locate a face and the eye region.
+3. OpenCV estimates the pupil position; NumPy maps it to the display dimensions.
+4. PyAutoGUI moves the pointer using a rolling average of recent positions. A detected blink triggers a click.
 
 ## Hardware
 
 - Raspberry Pi 5
 - Raspberry Pi Camera Module 3
 - Active cooler for Raspberry Pi 5
-- Display and peripherals for setup and use
+- Display and input peripherals for setup
 
-## Software
+## Software and Setup
 
-The project uses Python 3.11, OpenCV, NumPy, PyAutoGUI, and Picamera2. A Conda environment is recommended in the supplied setup notes.
-
-### Installation
+The project uses Python 3.11, OpenCV, NumPy, PyAutoGUI, and Picamera2. The supplied setup notes recommend creating an isolated Conda environment:
 
 ```bash
 conda create -n eye-mouse python=3.11 -y
@@ -29,11 +40,19 @@ conda activate eye-mouse
 pip install opencv-python pyautogui numpy picamera2
 ```
 
-On Raspberry Pi OS, Picamera2 may need to be installed from the system packages and made available to the Python environment. Follow the Raspberry Pi camera setup appropriate for your OS image.
+Picamera2 must be available to the Python environment and configured for the Raspberry Pi camera. After setup, run:
 
-### Python Code
+```bash
+python eye_tracking_mouse.py
+```
 
-The code below follows the supplied project code. Haar cascade paths use OpenCV's bundled data directory instead of a machine-specific absolute path.
+Press `q` in the preview window to quit.
+
+## Python Code
+
+The complete program is also available as [`eye_tracking_mouse.py`](eye_tracking_mouse.py). The cascade paths use OpenCV's bundled data directory, avoiding machine-specific home-directory paths.
+
+> **Fail-safe note:** The supplied program sets `pyautogui.FAILSAFE = False`, which disables PyAutoGUI's corner fail-safe. Consider setting it to `True` while testing to restore the emergency stop behavior.
 
 ```python
 import cv2
@@ -158,19 +177,18 @@ picam2.stop()
 cv2.destroyAllWindows()
 ```
 
-> **Safety note:** The supplied sketch sets `pyautogui.FAILSAFE = False`, which disables PyAutoGUI's corner fail-safe. Keep this in mind while testing; changing it to `True` restores the fail-safe behavior.
-
 ## Tuning
 
-- `SMOOTHING` controls the number of recent gaze positions averaged before the pointer moves.
-- The `np.interp` input ranges define the portion of the camera frame mapped to the screen. Adjust them for the camera position and the user's comfortable gaze range.
+- Increase or decrease `SMOOTHING` to adjust pointer stability and responsiveness.
+- Adjust the `np.interp` camera-frame ranges to match the camera position and comfortable gaze area.
 - The blink threshold is controlled by `eh < prev_eye_h * 0.75`.
 
 ## Project Files
 
+- [`eye_tracking_mouse.py`](eye_tracking_mouse.py) - Python application
 - `images/eye-tracking-setup.jpg` - Raspberry Pi and camera setup
-- `images/eye-tracking-demo.png` - eye tracking running on screen
+- `images/eye-tracking-demo.png` - live eye tracking demonstration
 
-## Project Blog Post
+## Blog Post
 
 - [Controlling a Mouse with Eye Movements Using Raspberry Pi 5](https://maker.robotistan.com/raspberry-pi-5-ile-goz-hareketleriyle-mouse-kontrolu/)
