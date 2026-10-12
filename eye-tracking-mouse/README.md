@@ -171,6 +171,6 @@ cv2.destroyAllWindows()
 - `images/eye-tracking-setup.jpg` - Raspberry Pi and camera setup
 - `images/eye-tracking-demo.png` - eye tracking running on screen
 
-## Reference
+## Project Blog Post
 
-- [Raspberry Pi 5 Eye Movement Mouse Control (Robotistan Maker)](https://maker.robotistan.com/raspberry-pi-5-ile-goz-hareketleriyle-mouse-kontrolu/)
+- [Controlling a Mouse with Eye Movements Using Raspberry Pi 5](https://maker.robotistan.com/raspberry-pi-5-ile-goz-hareketleriyle-mouse-kontrolu/)
