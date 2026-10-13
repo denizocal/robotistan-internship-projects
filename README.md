@@ -16,7 +16,7 @@ During my time as a Maker and Content Creator Intern, I gained hands-on experien
 
 - **📁 Custom PCB Designs:** Designed an Arduino Uno clone PCB and LM2596 buck/boost converter layouts from scratch using EDA tools.
 - **📁 [Eye Tracking Mouse](eye-tracking-mouse/README.md):** Raspberry Pi 5 gaze-controlled mouse using OpenCV eye tracking and blink clicking.
-- **📁 ESP32 Wireless Macro Keyboard:** Built a custom 3-button Bluetooth macro pad using Outemu Brown mechanical switches and the BleKeyboard library.
+- **📁 [ESP32 Bluetooth Macro Keyboard](esp32-bluetooth-macro-keyboard/README.md):** Built a custom three-button Bluetooth macro keyboard with an ESP32 DevKit V1 and the BleKeyboard library.
 - **📁 [Smart Radar System](smart-radar-system/README.md):** Arduino UNO R3 radar using an HC-SR04 sensor, SG90 servo, and a live Processing display with fading object trails.
 - **📁 [Ambilight Monitor Backlighting](ambilight-monitor-backlighting/README.md):** Built a screen-synchronized RGB backlighting system with an Arduino Nano, WS2812B LEDs, and FastLED.
 - **📁 [Smart Cleaning Robot](smart-cleaning-robot/README.md):** Arduino-based mobile cleaning robot with fan-assisted debris collection and ultrasonic obstacle detection.
