@@ -13,7 +13,7 @@ A compact, three-button Bluetooth macro keyboard built with an ESP32 DevKit V1. 
 - Uses the ESP32's internal pull-up resistors, so no external pull-up resistors are needed.
 - Fits in a compact 3D-printed enclosure and can run from a single-cell Li-Po battery.
 
-## Build photos
+## Build Photos
 
 <p align="center">
   <img src="images/esp32-controller.jpg" alt="ESP32 DevKit V1 mounted inside its enclosure" width="390">
@@ -45,7 +45,7 @@ The buttons share a common ground connection. Connect their other legs to the ES
 The firmware configures the button pins as INPUT_PULLUP. A button press therefore reads LOW.
 
 <p align="center">
-  <img src="images/wiring-diagram-en.png" alt="English-translated wiring diagram for the three-button ESP32 macro keyboard" width="856">
+  <img src="images/wiring-diagram-en.png" alt="English wiring diagram for the three-button ESP32 macro keyboard" width="856">
 </p>
 
 > **Power note:** The original build routes the 3.7 V Li-Po positive lead through a switch to VIN. VIN requirements differ between ESP32 DevKit variants. Check the recommended input range for your specific board before connecting the battery; use a suitable protected battery and an appropriate charging solution.
@@ -72,8 +72,8 @@ The default shortcuts are:
 
 Change the pin definitions, Bluetooth device name, or key combinations in the sketch to customize the keypad. The board must support Bluetooth Low Energy HID for the keyboard to pair.
 
-## Reference
+## Project Article
 
-Project information and the original wiring concept: [ESP32 Bluetooth Macro Keyboard (Robotistan Maker)](https://maker.robotistan.com/esp32-ile-bluetooth-makro-klavye-yapimi/).
+I wrote an English-language article about the project, including its design and build details. Read it here: [Building an ESP32 Bluetooth Macro Keyboard](https://maker.robotistan.com/esp32-ile-bluetooth-makro-klavye-yapimi/).
 
 The build photographs in this repository were supplied by the project author.
